@@ -4,6 +4,7 @@ for (let i = 0; i < buttonLength; i++) {
   document.querySelectorAll(".drum")[i].addEventListener("click", function () {
     let buttonInnerHtml = this.innerHTML;
     checkParameter(buttonInnerHtml);
+    buttonAnimation(buttonInnerHtml);
   });
 }
 
@@ -11,6 +12,7 @@ for (let i = 0; i < buttonLength; i++) {
 document.addEventListener("keypress", (event) => {
   let pressedKey = event.key;
   checkParameter(pressedKey);
+  buttonAnimation(pressedKey);
 });
 
 function checkParameter(parameter) {
@@ -47,4 +49,13 @@ function checkParameter(parameter) {
       console.log(buttonInnerHtml);
       break;
   }
+}
+
+function buttonAnimation(currentKey) {
+  let activeButton = document.querySelector("." + currentKey);
+  activeButton.classList.add("pressed");
+
+  setTimeout(function () {
+    activeButton.classList.remove("pressed");
+  }, 100);
 }
